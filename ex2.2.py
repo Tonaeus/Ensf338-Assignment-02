@@ -38,7 +38,7 @@ data_json = json.loads(response.read())
 resultTime = []
 resultLength = []
 for list in data_json:
-    time = timeit.timeit(lambda:func1(list,50,len(list)-1), number=10)
+    time = timeit.timeit(lambda:func1(list,50,len(list)-1), number=1)
     resultLength.append(len(list))
     resultTime.append(time)
 
