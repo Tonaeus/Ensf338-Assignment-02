@@ -34,13 +34,13 @@ url = "https://raw.githubusercontent.com/ldklab/ensf338w23/main/assignments/assi
 response = urlopen(url)
 data_json = json.loads(response.read())
   
-result = []
-resultLen = []
+resultTime = []
+resultLength = []
 for list in data_json:
-    time = timeit.timeit(lambda:func1(list,0,len(list)-1), number=25)
-    resultLen.append(len(list))
-    result.append(time)
+    time = timeit.timeit(lambda:func1(list,0,len(list)-1), number=5)
+    resultLength.append(len(list))
+    resultTime.append(time)
 
-plt.plot(result,resultLen)
+plt.plot(resultLength,resultTime)
 plt.show()
-print(result)
+print(resultTime)
