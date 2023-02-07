@@ -49,12 +49,18 @@ data_json = json.loads(response.read())
   
 resultTime = []
 resultLength = []
-
+result1 = []
+result2 = []
 for list in data_json:
-    time = timeit.timeit(lambda:func1(list,50,len(list)-1), number=1)
+    temp = [i for i in list]
+    time = timeit.timeit(lambda:func1(list,0,len(list)-1), number=1)
     resultLength.append(len(list))
     resultTime.append(time)
-
+    ## test
+    temp.sort()
+    result1.append(temp)
+    result2.append(list)
+    
 plt.plot(resultLength,resultTime)
 plt.show()
 
