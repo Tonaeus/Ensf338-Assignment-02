@@ -39,6 +39,9 @@ def main():
 
     ax.plot(inputs, fib1_times)
     ax.plot(inputs, fib2_times)
+    ax.set_xlabel("Fibonacci Number")
+    ax.set_ylabel("Time (seconds)")
+    ax.legend(["Original", "Improved"])
     plt.show()
     
 if __name__ == "__main__":
