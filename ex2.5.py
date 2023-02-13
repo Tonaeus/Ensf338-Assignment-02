@@ -4,8 +4,7 @@ import sys
 import json
 from urllib.request import urlopen
 import timeit
-
-
+import random
 
 sys.setrecursionlimit(20000)
 
@@ -14,13 +13,8 @@ def func1(arr, low, high):
         pi = func2(arr, low, high)
         func1(arr, low, pi-1)
         func1(arr, pi + 1, high)
-        
 def func2(array, start, end):
-    ## start new code
-    p = median(array,start,end, (start + end) // 2)
-    array[start], array[p] = array[p], array[start]
-    p = list[start]
-    ## end new code
+    p = array[start]
     low = start + 1
     high = end
     while True:
@@ -35,26 +29,30 @@ def func2(array, start, end):
     array[start], array[high] = array[high], array[start]
     return high
 
-## start new code
-def median(a, i, j, k):
-  if a[i] < a[j]:
-    return i if a[k] < a[i] else k if a[k] < a[j] else j
-  else:
-    return j if a[k] < a[j] else k if a[k] < a[i] else i
-## end new code
+def read_file(filename):
+    """
+    A function that reads a json file
 
-url = "https://raw.githubusercontent.com/Tonaeus/Ensf338-Assignment-02/main/json.json"
-response = urlopen(url)
-data_json = json.loads(response.read())
-  
-resultTime = []
-resultLength = []
+    Parameters: filename
+    Return: file's content
 
-for list in data_json:
-    time = timeit.timeit(lambda:func1(list,0,len(list)-1), number=1)
-    resultLength.append(len(list))
-    resultTime.append(time)
+    """
+    with open(filename, "r") as infile:
+        return json.load(infile)
 
-plt.plot(resultLength,resultTime)
-plt.show()
+def main():
+    data_json = read_file("ex2.5.json")
+    
+    resultTime = []
+    resultLength = []
+    for list in data_json:
+        time = timeit.timeit(lambda:func1(list,0,len(list)-1), number=1)
+        resultLength.append(len(list))
+        resultTime.append(time)
 
+    plt.plot(resultLength,resultTime)
+    plt.show()
+    print(resultTime)
+    
+if __name__ == "__main__":
+    main()

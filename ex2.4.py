@@ -58,4 +58,6 @@ for list in data_json:
     
 plt.plot(resultLength,resultTime)
 plt.show()
+print(resultTime)
+
 
